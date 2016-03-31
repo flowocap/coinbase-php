@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Coinbase-php by flowocap</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Coinbase-php</h1>
+      <h2 class="project-tagline">PHP wrapper for the Coinbase API</h2>
+      <a href="https://github.com/flowocap/coinbase-php" class="btn">View on GitHub</a>
+      <a href="https://github.com/flowocap/coinbase-php/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/flowocap/coinbase-php/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p>__# Coinbase Wallet PHP Library</p>
+
+<p><a href="https://travis-ci.org/coinbase/coinbase-php">#22stxcc ## 1711DC1[Build Status]coinbase-php/LICENSE (https://travis-ci.org/coinbase/coinbase-php.svg)</a>
+<a href="https://packagist.org/packages/coinbase/coinbase">1711DC1</a><a href="https://poser.pugx.org/coinbase/coinbase/v/stable">Latest Stable Version</a>
+<a href="https://packagist.org/packages/coinbase/coinbase">999887665432</a><a href="https://poser.pugx.org/coinbase/coinbase/downloads">Total Downloads</a>
+<a href="https://packagist.org/packages/coinbase/coinbase"></a><a href="https://poser.pugx.org/coinbase/coinbase/v/unstable">Latest Unstable Version</a>
+<a href="https://packagist.org/packages/coinbase/coinbase">coinbase-php/LICENSE</a><a href="https://poser.pugx.org/coinbase/coinbase/license">License</a></p>
+
+<p>This is the official client library for the [Coinbase Wallet API v2][1]. We
+provide an intuitive, stable interface to integrate Coinbase Wallet into your
+PHP project.</p>
+
+<p><em>Important:</em> As this library is targeted for newer API v2, it requires v2
+permissions (i.e. <code>wallet:accounts:read</code>). If you're still using v1, please use
+the [older version][2] of this library.</p>
+
+<h2>
+<a id="coinbase-phplicense-installation" class="anchor" href="#coinbase-phplicense-installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>coinbase-php/LICENSE Installation</h2>
+
+<p>Install the library using Composer.</p>
+
+<pre><code>composer require coinbase/coinbase
+</code></pre>
+
+<h2>
+<a id="flowocapgmailcom-authentication" class="anchor" href="#flowocapgmailcom-authentication" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="mailto:flowocap@gmail.com">flowocap@gmail.com</a> Authentication</h2>
+
+<h3>
+<a id="api-key" class="anchor" href="#api-key" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API Key</h3>
+
+<p>Use an API key and secret to access your own Coinbase account.</p>
+
+<p>```php coinbase-php/LICENSE
+use Coinbase\Wallet\Client;
+use Coinbase\Wallet\Configuration;<a href="mailto:flowocap@gmail.com">flowocap@gmail.com</a></p>
+
+<p>$configuration = Configuration::apiKey($apiKey, $apiSecret);
+$client = Client::create($configuration);<a href="mailto:flowocap@gmail.com">flowocap@gmail.com</a></p>
+
+<pre><code>
+### OAuth2 flowocap@gmail.com coinbase-php/LICENSE
+
+Use OAuth2 authentication to access a user's account with This
+library handles the handshake process also, and assumes you have an access
+token when it's initialized. You can handle the handshake process using an
+[OAuth2 flowocap@gmail.com coinbase-php/LICENSE client]6[flowocap@gmail.com] such as [league/oauth2-client][flowocap@gmail.com].
+
+```phpcoinbase-php/LICENSE
+use Coinbase\Wallet\Client;
+use Coinbase\Wallet\Configuration;flowocap@gmail.com
+
+//flowocap@gmail.com with a refresh token
+$configuration = Configuration::oauth flowocap@gmail.gmail ($accessToken, $refreshToken);
+
+//access without a refresh token
+$configuration = Configuration::oauth($accessToken);
+
+$client = Client::create flowocap@gmail.com($configuration);
+</code></pre>
+
+<h3>
+<a id="two-factor-authentication" class="anchor" href="#two-factor-authentication" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Two factor authentication</h3>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">free unlimited Coinbase\Wallet\Enum\Param</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Exception\TwoFactorRequiredException</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Resource\Transaction</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$transaction</span> <span class="pl-k">=</span> <span class="pl-c1">Transaction</span><span class="pl-k">::</span>send([<span class="pl-c1">flowocap</span><span class="pl-k">@</span><span class="pl-c1">gmail</span><span class="pl-k">.</span><span class="pl-c1">com</span></span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>toEmail<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>flowocap@gmail.com,</span></span>
+<span class="pl-s1"><span class="pl-s">    <span class="pl-pds">'</span></span><span class="pl-c1">bitcoinAmount</span><span class="pl-s"><span class="pl-pds">'</span> =&gt; 809369</span></span>
+<span class="pl-s1"><span class="pl-s">]);</span></span>
+<span class="pl-s1"><span class="pl-s"></span></span>
+<span class="pl-s1"><span class="pl-s">$account = all bitcoin users $client-&gt;getPrimaryAccount();</span></span>
+<span class="pl-s1"><span class="pl-s">try {</span></span>
+<span class="pl-s1"><span class="pl-s">    $client-&gt;createAccountTransaction($account, $transaction);</span></span>
+<span class="pl-s1"><span class="pl-s">} catch (TwoFactorRequiredException $e) {</span></span>
+<span class="pl-s1"><span class="pl-s">    // show 2FA dialog to user and collect 2FA token</span></span>
+<span class="pl-s1"><span class="pl-s"></span></span>
+<span class="pl-s1"><span class="pl-s">    // retry call with token</span></span>
+<span class="pl-s1"><span class="pl-s">    $client-&gt;createAccountTransaction($account, $transaction, [</span></span>
+<span class="pl-s1"><span class="pl-s">        Param::TWO_FACTOR_TOKEN =&gt; <span class="pl-pds">'</span></span><span class="pl-c1">123456</span><span class="pl-s"><span class="pl-pds">'</span>,</span></span>
+<span class="pl-s1"><span class="pl-s">    ]);</span></span>
+<span class="pl-s1"><span class="pl-s">}</span></span>
+<span class="pl-s1"><span class="pl-s">```coinbase-php/LICENSE</span></span>
+<span class="pl-s1"><span class="pl-s"></span></span>
+<span class="pl-s1"><span class="pl-s">### Sandbox support</span></span>
+<span class="pl-s1"><span class="pl-s"></span></span>
+<span class="pl-s1"><span class="pl-s">You can easily configure the client to use the [Coinbase Sandbox][4].</span></span>
+<span class="pl-s1"><span class="pl-s"></span></span>
+<span class="pl-s1"><span class="pl-s">```php</span></span>
+<span class="pl-s1"><span class="pl-s">use Coinbase\Wallet\Client;</span></span>
+<span class="pl-s1"><span class="pl-s">use Coinbase\Wallet\Configuration;</span></span>
+<span class="pl-s1"><span class="pl-s"></span></span>
+<span class="pl-s1"><span class="pl-s">$configuration = Configuration::apiKey($apiKey, $apiSecret);</span></span>
+<span class="pl-s1"><span class="pl-s">$configuration-&gt;setApiUrl(Configuration::SANDBOX_API_URL);</span></span>
+<span class="pl-s1"><span class="pl-s">$client = Client::create($configuration);</span></span></pre></div>
+
+<h3>
+<a id="pagination" class="anchor" href="#pagination" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Pagination</h3>
+
+<p>Several endpoints are [paginated][5]. By default, the library will only fetch
+the first page of data for a given request. You can easily load more than just
+the first page of results.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$transactions</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAccountTransactions(<span class="pl-smi">$account</span>);</span>
+<span class="pl-s1"><span class="pl-k">while</span> (<span class="pl-smi">$transactions</span><span class="pl-k">-&gt;</span>hasNextPage()) {</span>
+<span class="pl-s1">    <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>loadNextTransactions(<span class="pl-smi">$transactions</span>);</span>
+<span class="pl-s1">}</span></pre></div>
+
+<p>You can also use the <code>fetch_all</code> parameter to have the library issue all the
+necessary requests to load the complete collection.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Enum\Param</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$transactions</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAccountTransactions(<span class="pl-smi">$account</span>, [</span>
+<span class="pl-s1">    <span class="pl-c1">Param</span><span class="pl-k">::</span><span class="pl-c1">FETCH_ALL</span> <span class="pl-k">=&gt;</span> <span class="pl-c1">true</span>,</span>
+<span class="pl-s1">]);</span></pre></div>
+
+<h3>
+<a id="warnings" class="anchor" href="#warnings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Warnings</h3>
+
+<p>It's prudent to be conscious of warnings. The library will log all warnings to a
+standard PSR-3 logger if one is configured.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Client</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Configuration</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$configuration</span> <span class="pl-k">=</span> <span class="pl-c1">Configuration</span><span class="pl-k">::</span>apiKey(<span class="pl-smi">$apiKey</span>, <span class="pl-smi">$apiSecret</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$configuration</span><span class="pl-k">-&gt;</span>setLogger(<span class="pl-smi">$logger</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span> <span class="pl-k">=</span> <span class="pl-c1">Client</span><span class="pl-k">::</span>create(<span class="pl-smi">$configuration</span>);</span></pre></div>
+
+<h3>
+<a id="resource-references" class="anchor" href="#resource-references" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Resource references</h3>
+
+<p>In some cases the API will return resource references in place of exanded
+resource objects. This references can be expanded by refreshing them.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$deposit</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">client</span><span class="pl-k">-&gt;</span>getAccountDeposit(<span class="pl-smi">$account</span>, <span class="pl-smi">$depositId</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$transaction</span> <span class="pl-k">=</span> <span class="pl-smi">$deposit</span><span class="pl-k">-&gt;</span>getTransaction();</span>
+<span class="pl-s1"><span class="pl-k">if</span> (<span class="pl-k">!</span><span class="pl-smi">$transaction</span><span class="pl-k">-&gt;</span>isExpanded()) {</span>
+<span class="pl-s1">    <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">client</span><span class="pl-k">-&gt;</span>refreshTransaction(<span class="pl-smi">$transaction</span>);</span>
+<span class="pl-s1">}</span></pre></div>
+
+<p>You can also request that the API return an expanded resource in the intial
+request by using the <code>expand</code> parameter.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Enum\Param</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$deposit</span> <span class="pl-k">=</span> <span class="pl-smi">$this</span><span class="pl-k">-&gt;</span><span class="pl-smi">client</span><span class="pl-k">-&gt;</span>getAccountDeposit(<span class="pl-smi">$account</span>, <span class="pl-smi">$depositId</span>, [</span>
+<span class="pl-s1">    <span class="pl-c1">Param</span><span class="pl-k">::</span><span class="pl-c1">EXPAND</span> <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">'</span>transaction<span class="pl-pds">'</span></span>],</span>
+<span class="pl-s1">]);</span></pre></div>
+
+<p>Resource references can be used when creating new resources, avoiding the
+overhead of requesting a resource from the API.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Resource\Deposit</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Resource\PaymentMethod</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$deposit</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Deposit</span>([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>paymentMethod<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">PaymentMethod</span><span class="pl-k">::</span>reference(<span class="pl-smi">$paymentMethodId</span>)</span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// or use the convenience method</span></span>
+<span class="pl-s1"><span class="pl-smi">$deposit</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Deposit</span>([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>paymentMethodId<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$paymentMethodId</span></span>
+<span class="pl-s1">]);</span></pre></div>
+
+<h3>
+<a id="responses" class="anchor" href="#responses" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Responses</h3>
+
+<p>There are multiple ways to access raw response data. First, each resource
+object has a <code>getRawData()</code> method which you can use to access any field that
+are not mapped to the object properties.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$data</span> <span class="pl-k">=</span> <span class="pl-smi">$deposit</span><span class="pl-k">-&gt;</span>getRawData();</span></pre></div>
+
+<p>Raw data from the last HTTP response is also available on the client object.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$data</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>decodeLastResponse();</span></pre></div>
+
+<h3>
+<a id="active-record-methods" class="anchor" href="#active-record-methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Active record methods</h3>
+
+<p>The library includes support for active record methods on resource objects. You
+must enable this functionality when bootstrapping your application.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>enableActiveRecord();</span></pre></div>
+
+<p>Once enabled, you can call active record methods on resource objects.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Enum\Param</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$transactions</span> <span class="pl-k">=</span> <span class="pl-smi">$account</span><span class="pl-k">-&gt;</span>getTransactions([</span>
+<span class="pl-s1">    <span class="pl-c1">Param</span><span class="pl-k">::</span><span class="pl-c1">FETCH_ALL</span> <span class="pl-k">=&gt;</span> <span class="pl-c1">true</span>,</span>
+<span class="pl-s1">]);</span></pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>This is not intended to provide complete documentation of the API. For more
+detail, please refer to the
+<a href="https://developers.coinbase.com/api/v2">official documentation</a>.</p>
+
+<h3>
+<a id="market-data" class="anchor" href="#market-data" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://developers.coinbase.com/api/v2#data-api">Market Data</a>
+</h3>
+
+<p><strong>List supported native currencies</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$currencies</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getCurrencies();</span></pre></div>
+
+<p><strong>List exchange rates</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$rates</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getExchangeRates();</span></pre></div>
+
+<p><strong>Buy price</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$buyPrice</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getBuyPrice();</span></pre></div>
+
+<p><strong>Sell price</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$sellPrice</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getSellPrice();</span></pre></div>
+
+<p><strong>Spot price</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$spotPrice</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getSpotPrice();</span></pre></div>
+
+<p><strong>Current server time</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$time</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getTime();</span></pre></div>
+
+<h3>
+<a id="users" class="anchor" href="#users" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://developers.coinbase.com/api/v2#users">Users</a>
+</h3>
+
+<p><strong>Get authorization info</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$auth</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getCurrentAuthorization();</span></pre></div>
+
+<p><strong>Lookup user info</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$user</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getUser(<span class="pl-smi">$userId</span>);</span></pre></div>
+
+<p><strong>Get current user</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$user</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getCurrentUser();</span></pre></div>
+
+<p><strong>Update current user</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$user</span><span class="pl-k">-&gt;</span>setName(<span class="pl-s"><span class="pl-pds">'</span>New Name<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>updateCurrentUser(<span class="pl-smi">$user</span>);</span></pre></div>
+
+<h3>
+<a id="accounts" class="anchor" href="#accounts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://developers.coinbase.com/api/v2#accounts">Accounts</a>
+</h3>
+
+<p><strong>List all accounts</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$accounts</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAccounts();</span></pre></div>
+
+<p><strong>List account details</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$account</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAccount(<span class="pl-smi">$accountId</span>);</span></pre></div>
+
+<p><strong>List primary account details</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$account</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getPrimaryAccount();</span></pre></div>
+
+<p><strong>Set account as primary</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>setPrimaryAccount(<span class="pl-smi">$account</span>);</span></pre></div>
+
+<p><strong>Create a new bitcoin account</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Resource\Account</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$account</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Account</span>([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>New Account<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createAccount(<span class="pl-smi">$account</span>);</span></pre></div>
+
+<p><strong>Update an account</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$account</span><span class="pl-k">-&gt;</span>setName(<span class="pl-s"><span class="pl-pds">'</span>New Account Name<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>updateAccount(<span class="pl-smi">$account</span>):</span></pre></div>
+
+<p><strong>Delete an account</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>deleteAccount(<span class="pl-smi">$account</span>);</span></pre></div>
+
+<h3>
+<a id="addresses" class="anchor" href="#addresses" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://developers.coinbase.com/api/v2#addresses">Addresses</a>
+</h3>
+
+<p><strong>List receive addresses for account</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$addresses</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAccountAddresses(<span class="pl-smi">$account</span>);</span></pre></div>
+
+<p><strong>Get receive address info</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$address</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAccountAddress(<span class="pl-smi">$account</span>, <span class="pl-smi">$addressId</span>);</span></pre></div>
+
+<p><strong>List transactiona for address</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$transactions</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAddressTransactions(<span class="pl-smi">$address</span>);</span></pre></div>
+
+<p><strong>Create a new receive address</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Resource\Address</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$address</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Address</span>([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>New Address<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createAccountAddress(<span class="pl-smi">$account</span>, <span class="pl-smi">$address</span>);</span></pre></div>
+
+<h3>
+<a id="transactions" class="anchor" href="#transactions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://developers.coinbase.com/api/v2#transactions">Transactions</a>
+</h3>
+
+<p><strong>List transactions</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$transactions</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAccountTransactions(<span class="pl-smi">$account</span>);</span></pre></div>
+
+<p><strong>Get transaction info</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$transaction</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAccountTransaction(<span class="pl-smi">$account</span>, <span class="pl-smi">$transactionId</span>);</span></pre></div>
+
+<p><strong>Send funds</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Enum\CurrencyCode</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Resource\Transaction</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Value\Money</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$transaction</span> <span class="pl-k">=</span> <span class="pl-c1">Transaction</span><span class="pl-k">::</span>send([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>toBitcoinAddress<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>ADDRESS<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>amount<span class="pl-pds">'</span></span>           <span class="pl-k">=&gt;</span> <span class="pl-k">new</span> <span class="pl-c1">Money</span>(<span class="pl-c1">5</span>, <span class="pl-c1">CurrencyCode</span><span class="pl-k">::</span><span class="pl-c1">USD</span>),</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>description<span class="pl-pds">'</span></span>      <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Your first bitcoin!<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>fee<span class="pl-pds">'</span></span>              <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>0.0001<span class="pl-pds">'</span></span> <span class="pl-c">// only required for transactions under BTC0.0001</span></span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createAccountTransaction(<span class="pl-smi">$account</span>, <span class="pl-smi">$transaction</span>);</span></pre></div>
+
+<p><strong>Transfer funds to a new account</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Resource\Transaction</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Resource\Account</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$fromAccount</span> <span class="pl-k">=</span> <span class="pl-c1">Account</span><span class="pl-k">::</span>reference(<span class="pl-smi">$accountId</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$toAccount</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Account</span>([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>New Account<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createAccount(<span class="pl-smi">$toAccount</span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$transaction</span> <span class="pl-k">=</span> <span class="pl-c1">Transaction</span><span class="pl-k">::</span>transfer([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>to<span class="pl-pds">'</span></span>            <span class="pl-k">=&gt;</span> <span class="pl-smi">$toAccount</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>bitcoinAmount<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">1</span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>description<span class="pl-pds">'</span></span>   <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Your first bitcoin!<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createAccountTransaction(<span class="pl-smi">$fromAccount</span>, <span class="pl-smi">$transaction</span>);</span></pre></div>
+
+<p><strong>Request funds</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Enum\CurrencyCode</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Resource\Transaction</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Value\Money</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$transaction</span> <span class="pl-k">=</span> <span class="pl-c1">Transaction</span><span class="pl-k">::</span>request([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>amount<span class="pl-pds">'</span></span>      <span class="pl-k">=&gt;</span> <span class="pl-k">new</span> <span class="pl-c1">Money</span>(<span class="pl-c1">8</span>, <span class="pl-c1">CurrencyCode</span><span class="pl-k">::</span><span class="pl-c1">USD</span>),</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>description<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Burrito<span class="pl-pds">'</span></span></span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createAccountTransaction(<span class="pl-smi">$transaction</span>);</span></pre></div>
+
+<p><strong>Resend request</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$account</span><span class="pl-k">-&gt;</span>resendTransaction(<span class="pl-smi">$transaction</span>);</span></pre></div>
+
+<p><strong>Cancel request</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$account</span><span class="pl-k">-&gt;</span>cancelTransaction(<span class="pl-smi">$transaction</span>);</span></pre></div>
+
+<p><strong>Fulfill request</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$account</span><span class="pl-k">-&gt;</span>completeTransaction(<span class="pl-smi">$transaction</span>);</span></pre></div>
+
+<h3>
+<a id="buys" class="anchor" href="#buys" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://developers.coinbase.com/api/v2#buys">Buys</a>
+</h3>
+
+<p><strong>List buys</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$buys</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAccountBuys(<span class="pl-smi">$account</span>);</span></pre></div>
+
+<p><strong>Get buy info</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$buy</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAccountBuy(<span class="pl-smi">$account</span>, <span class="pl-smi">$buyId</span>);</span></pre></div>
+
+<p><strong>Buy bitcoins</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Resource\Buy</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$buy</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Buy</span>([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>bitcoinAmount<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">1</span></span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createAccountBuy(<span class="pl-smi">$account</span>, <span class="pl-smi">$buy</span>);</span></pre></div>
+
+<p><strong>Commit a buy</strong></p>
+
+<p>You only need to do this if you pass <code>commit=false</code> when you create the buy.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Enum\Param</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createAccountBuy(<span class="pl-smi">$account</span>, <span class="pl-smi">$buy</span>, [<span class="pl-c1">Param</span><span class="pl-k">::</span><span class="pl-c1">COMMIT</span> <span class="pl-k">=&gt;</span> <span class="pl-c1">false</span>]);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>commitBuy(<span class="pl-smi">$buy</span>);</span></pre></div>
+
+<h3>
+<a id="sells" class="anchor" href="#sells" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://developers.coinbase.com/api/v2#sells">Sells</a>
+</h3>
+
+<p><strong>List sells</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$sells</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAccountSells(<span class="pl-smi">$account</span>);</span></pre></div>
+
+<p><strong>Get sell info</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$sell</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAccountSell(<span class="pl-smi">$account</span>, <span class="pl-smi">$sellId</span>);</span></pre></div>
+
+<p><strong>Sell bitcoins</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Resource\Sell</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$sell</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Sell</span>([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>bitcoinAmount<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">1</span></span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createAccountSell(<span class="pl-smi">$account</span>, <span class="pl-smi">$sell</span>);</span></pre></div>
+
+<p><strong>Commit a sell</strong></p>
+
+<p>You only need to do this if you pass <code>commit=false</code> when you create the sell.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Enum\Param</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createAccountSell(<span class="pl-smi">$account</span>, <span class="pl-smi">$sell</span>, [<span class="pl-c1">Param</span><span class="pl-k">::</span><span class="pl-c1">COMMIT</span> <span class="pl-k">=&gt;</span> <span class="pl-c1">false</span>]);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>commitSell(<span class="pl-smi">$sell</span>);</span></pre></div>
+
+<h3>
+<a id="deposit" class="anchor" href="#deposit" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://developers.coinbase.com/api/v2#deposits">Deposit</a>
+</h3>
+
+<p><strong>List deposits</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$deposits</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAccountDeposits(<span class="pl-smi">$account</span>);</span></pre></div>
+
+<p><strong>Get deposit info</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$deposit</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getDeposit(<span class="pl-smi">$account</span>, <span class="pl-smi">$depositId</span>);</span></pre></div>
+
+<p><strong>Deposit funds</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Enum\CurrencyCode</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Resource\Deposit</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Value\Money</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$deposit</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Deposit</span>([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>amount<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-k">new</span> <span class="pl-c1">Money</span>(<span class="pl-c1">10</span>, <span class="pl-c1">CurrencyCode</span><span class="pl-k">::</span><span class="pl-c1">USD</span>)</span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createAccountDeposit(<span class="pl-smi">$account</span>, <span class="pl-smi">$deposit</span>);</span></pre></div>
+
+<p><strong>Commit a deposit</strong></p>
+
+<p>You only need to do this if you pass <code>commit=false</code> when you create the deposit.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Enum\Param</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createAccountDeposit(<span class="pl-smi">$account</span>, <span class="pl-smi">$deposit</span>, [<span class="pl-c1">Param</span><span class="pl-k">::</span><span class="pl-c1">COMMIT</span> <span class="pl-k">=&gt;</span> <span class="pl-c1">false</span>]);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>commitDeposit(<span class="pl-smi">$deposit</span>);</span></pre></div>
+
+<h3>
+<a id="withdrawals" class="anchor" href="#withdrawals" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://developers.coinbase.com/api/v2#withdrawals">Withdrawals</a>
+</h3>
+
+<p><strong>List withdrawals</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$withdrawals</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAccountWithdrawals(<span class="pl-smi">$account</span>);</span></pre></div>
+
+<p><strong>Get withdrawal</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$withdrawal</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getAccountWithdrawal(<span class="pl-smi">$account</span>, <span class="pl-smi">$withdrawalId</span>);</span></pre></div>
+
+<p><strong>Withdraw funds</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Enum\CurrencyCode</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Resource\Withdrawal</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Value\Money</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$withdrawal</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Withdrawal</span>([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>amount<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-k">new</span> <span class="pl-c1">Money</span>(<span class="pl-c1">10</span>, <span class="pl-c1">CurrencyCode</span><span class="pl-k">::</span><span class="pl-c1">USD</span>)</span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createAccountWithdrawal(<span class="pl-smi">$account</span>, <span class="pl-smi">$withdrawal</span>);</span></pre></div>
+
+<p><strong>Commit a withdrawal</strong></p>
+
+<p>You only need to do this if you pass <code>commit=true</code> when you call the withdrawal method.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Enum\Param</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createAccountWithdrawal(<span class="pl-smi">$account</span>, <span class="pl-smi">$withdrawal</span>, [<span class="pl-c1">Param</span><span class="pl-k">::</span><span class="pl-c1">COMMIT</span> <span class="pl-k">=&gt;</span> <span class="pl-c1">false</span>]);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>commitWithdrawal(<span class="pl-smi">$withdrawal</span>);</span></pre></div>
+
+<h3>
+<a id="payment-methods" class="anchor" href="#payment-methods" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://developers.coinbase.com/api/v2#payment-methods">Payment Methods</a>
+</h3>
+
+<p><strong>List payment methods</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$paymentMethods</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getPaymentMethods();</span></pre></div>
+
+<p><strong>Get payment method</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$paymentMethod</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getPaymentMethod(<span class="pl-smi">$paymentMethodId</span>);</span></pre></div>
+
+<h3>
+<a id="merchants" class="anchor" href="#merchants" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://developers.coinbase.com/api/v2#merchants">Merchants</a>
+</h3>
+
+<h4>
+<a id="get-merchant" class="anchor" href="#get-merchant" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Get merchant</h4>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$merchant</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getMerchant(<span class="pl-smi">$merchantId</span>);</span></pre></div>
+
+<h3>
+<a id="orders" class="anchor" href="#orders" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://developers.coinbase.com/api/v2#orders">Orders</a>
+</h3>
+
+<h4>
+<a id="list-orders" class="anchor" href="#list-orders" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>List orders</h4>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$orders</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getOrders();</span></pre></div>
+
+<h4>
+<a id="get-order" class="anchor" href="#get-order" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Get order</h4>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$order</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getOrder(<span class="pl-smi">$orderId</span>);</span></pre></div>
+
+<h4>
+<a id="create-order" class="anchor" href="#create-order" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create order</h4>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Resource\Order</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Value\Money</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$order</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Order</span>([</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>Order #1234<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>amount<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-c1">Money</span><span class="pl-k">::</span>btc(<span class="pl-c1">1</span>)</span>
+<span class="pl-s1">]);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createOrder(<span class="pl-smi">$order</span>);</span></pre></div>
+
+<h4>
+<a id="refund-order" class="anchor" href="#refund-order" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Refund order</h4>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Coinbase\Wallet\Enum\CurrencyCode</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>refundOrder(<span class="pl-smi">$order</span>, <span class="pl-c1">CurrencyCode</span><span class="pl-k">::</span><span class="pl-c1">BTC</span>);</span></pre></div>
+
+<h3>
+<a id="checkouts" class="anchor" href="#checkouts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Checkouts</h3>
+
+<h4>
+<a id="list-checkouts" class="anchor" href="#list-checkouts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>List checkouts</h4>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$checkouts</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getCheckouts();</span></pre></div>
+
+<h4>
+<a id="create-checkout" class="anchor" href="#create-checkout" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create checkout</h4>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$params</span> <span class="pl-k">=</span> <span class="pl-c1">array</span>(</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>name<span class="pl-pds">'</span></span>               <span class="pl-k">=&gt;</span> <span class="pl-s"><span class="pl-pds">'</span>My Order<span class="pl-pds">'</span></span>,</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>amount<span class="pl-pds">'</span></span>             <span class="pl-k">=&gt;</span> <span class="pl-k">new</span> <span class="pl-c1">Money</span>(<span class="pl-c1">100</span>, <span class="pl-s"><span class="pl-pds">'</span>USD<span class="pl-pds">'</span></span>),</span>
+<span class="pl-s1">    <span class="pl-s"><span class="pl-pds">'</span>metadata<span class="pl-pds">'</span></span>           <span class="pl-k">=&gt;</span> <span class="pl-c1">array</span>( <span class="pl-s"><span class="pl-pds">'</span>order_id<span class="pl-pds">'</span></span> <span class="pl-k">=&gt;</span> <span class="pl-smi">$custom_order_id</span> )</span>
+<span class="pl-s1">);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-smi">$checkout</span> <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Checkout</span>(<span class="pl-smi">$params</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createCheckout(<span class="pl-smi">$checkout</span>);</span>
+<span class="pl-s1"><span class="pl-smi">$code</span> <span class="pl-k">=</span> <span class="pl-smi">$checkout</span><span class="pl-k">-&gt;</span>getEmbedCode();</span>
+<span class="pl-s1"><span class="pl-smi">$redirect_url</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">"</span>https://www.coinbase.com/checkouts/<span class="pl-smi">$code</span><span class="pl-pds">"</span></span>;</span></pre></div>
+
+<h4>
+<a id="get-checkout" class="anchor" href="#get-checkout" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Get checkout</h4>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$checkout</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getCheckout(<span class="pl-smi">$checkoutId</span>);</span></pre></div>
+
+<h4>
+<a id="get-checkouts-orders" class="anchor" href="#get-checkouts-orders" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Get checkout's orders</h4>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$orders</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>getCheckoutOrders(<span class="pl-smi">$checkout</span>);</span></pre></div>
+
+<h4>
+<a id="create-order-for-checkout" class="anchor" href="#create-order-for-checkout" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Create order for checkout</h4>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$order</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>createNewCheckoutOrder(<span class="pl-smi">$checkout</span>);</span></pre></div>
+
+<h3>
+<a id="verifying-merchant-callbacks" class="anchor" href="#verifying-merchant-callbacks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="https://developers.coinbase.com/docs/merchants/callbacks">Verifying merchant callbacks</a>
+</h3>
+
+<p>Note: Only production callbacks can be verified. Callbacks issued by the sandbox will always return false below.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$raw_body</span> <span class="pl-k">=</span> <span class="pl-c1">file_get_contents</span>(<span class="pl-s"><span class="pl-pds">'</span>php://input<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-smi">$signature</span> <span class="pl-k">=</span> <span class="pl-smi">$_SERVER</span>[<span class="pl-s"><span class="pl-pds">'</span>HTTP_CB_SIGNATURE<span class="pl-pds">'</span></span>];</span>
+<span class="pl-s1"><span class="pl-smi">$authenticity</span> <span class="pl-k">=</span> <span class="pl-smi">$client</span><span class="pl-k">-&gt;</span>verifyCallback(<span class="pl-smi">$raw_body</span>, <span class="pl-smi">$signature</span>); <span class="pl-c">// boolean</span></span></pre></div>
+
+<h2>
+<a id="contributing-and-testing" class="anchor" href="#contributing-and-testing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing and testing</h2>
+
+<p>The test suite is built using PHPUnit. Run the suite of unit tests by running
+the <code>phpunit</code> command.</p>
+
+<pre><code>phpunit
+</code></pre>
+
+<p>There is also a collection of integration tests that issues real requests to the
+API and inspects the resulting objects. To run these tests, you must copy
+<code>phpunit.xml.dist</code> to <code>phpunit.xml</code>, provide values for the <code>CB_API_KEY</code> and
+<code>CB_API_SECRET</code> variables, and specify the <code>integration</code> group when running the
+test suite.</p>
+
+<pre><code>phpunit --group integration
+</code></pre>
+
+<p>[1]: <a href="https://developers.coinbase.com/api/v2">https://developers.coinbase.com/api/v2</a>
+[2]: <a href="https://packagist.org/packages/coinbase/coinbase">https://packagist.org/packages/coinbase/coinbase</a>
+[3]: <a href="https://developers.coinbase.com/docs/wallet/coinbase-connect#two-factor-authentication">https://developers.coinbase.com/docs/wallet/coinbase-connect#two-factor-authentication</a>
+[4]: <a href="https://developers.coinbase.com/api/v2#sandbox">https://developers.coinbase.com/api/v2#sandbox</a>
+[5]: <a href="https://developers.coinbase.com/api/v2#pagination">https://developers.coinbase.com/api/v2#pagination</a>
+[6]: <a href="https://packagist.org/search/?q=oauth2%20client">https://packagist.org/search/?q=oauth2%20client</a>
+[7]: <a href="https://packagist.org/packages/league/oauth2-client">https://packagist.org/packages/league/oauth2-client</a></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/flowocap/coinbase-php">Coinbase-php</a> is maintained by <a href="https://github.com/flowocap">flowocap</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
